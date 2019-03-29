@@ -142,16 +142,13 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
 
         if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
-                owner = (Owner)data.getSerializableExtra("owner");
-
+                String ownerID = data.getStringExtra("ownerID");
+                owner = allUsers.getOwnerBasedOnID(ownerID);
             }
         }
     }
