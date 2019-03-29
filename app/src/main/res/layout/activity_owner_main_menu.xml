@@ -26,16 +26,24 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="137dp"
+            android:layout_height="53dp"
+            android:gravity="center_horizontal"
             android:text="Owner Menu"
             android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/owner_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="395dp"
-        android:layout_height="116dp"
+        android:layout_height="95dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
@@ -55,7 +63,7 @@
         <TextView
             android:id="@+id/owner_credits"
             android:layout_width="220dp"
-            android:layout_height="match_parent"
+            android:layout_height="95dp"
             android:layout_weight="1"
             android:textSize="24sp" />
     </LinearLayout>
@@ -78,25 +86,38 @@
         <Button
             android:id="@+id/view_customer_button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="View Customers" />
 
         <Button
             android:id="@+id/send_message_button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Send Message" />
 
         <Button
             android:id="@+id/manage_credits"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Manage Credits" />
+
+        <Button
+
+            android:id="@+id/manage_account"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Manage Account" />
+        <Button
+            android:id="@+id/setting_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
+
 
         <Button
             android:id="@+id/sign_out_button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Sign Out" />
 
     </LinearLayout>

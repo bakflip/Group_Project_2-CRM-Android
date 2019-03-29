@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * @author Thong Nguyen
  */
 public class AllUsers implements Serializable {
-    
+
     ArrayList<Owner> owners;
     ArrayList<Customer> customers;
-    String npassword;
+    //String npassword;
     
     //Constructor
     public AllUsers() {
@@ -119,37 +119,31 @@ public class AllUsers implements Serializable {
         return ret;
     }
 
-    //Myo (Not working because of STDIN
-    /*public boolean ChangeOpass(String id, String name, String password){
+    //Myo change owner password function
+    public boolean ChangeOpass(String id, String password, String npassword){
         for(Owner owner: owners){
-            if(owner.getID().equals(id) && owner.getCompanyName().equals(name) && owner.getPassword().equals(password))
-            {   
-                System.out.println("Enter your new password!"); 
-                    do {
-                            npassword = STDIN.next();
-                       } while (npassword.trim().equals(""));
-                    owner.setPassword(npassword);  
+            if(owner.getID().equals(id) && owner.getPassword().equals(password))
+            {
+                owner.setPassword(npassword);
                 return true;
-            }  
+
+            }
         }
         return false;
-    }*/
+    }
     
-    //Myo (not working because STDIN)
-    /*public boolean ChangeCpass(String id, String name, String password){
+    //Myo change customer password function
+    public boolean ChangeCpass(String id, String password, String npassword){
         for(Customer customer: customers){
-            if(customer.getID().equals(id) && customer.getCustomerName().equals(name) && customer.getPassword().equals(password))
-            {   
-                System.out.println("Enter your new password!"); 
-                    do {
-                            npassword = STDIN.next();
-                       } while (npassword.trim().equals(""));
-                    customer.setPassword(npassword);  
+            if(customer.getID().equals(id) && customer.getPassword().equals(password))
+            {
+
+                customer.setPassword(npassword);
                 return true;
-            }  
+            }
         }
         return false;
-    }*/
+    }
     
         public boolean isOEmpty(){
         return owners.isEmpty();
@@ -192,5 +186,29 @@ public class AllUsers implements Serializable {
     //Zarni's function
     public int getCustomerSize() {
         return customers.size();
+    }
+
+    //Delete Owner account function
+    public boolean DeleteOaccount(String id, String password){
+        for(Owner owner: owners){
+            if(owner.getID().equals(id) && owner.getPassword().equals(password))
+            {
+                owners.remove(owner);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Delete Customer account function
+    public boolean DeleteCaccount(String id,String password){
+        for(Customer customer: customers){
+            if(customer.getID().equals(id) && customer.getPassword().equals(password))
+            {
+                customers.remove(customer);
+                return true;
+            }
+        }
+        return false;
     }
 }

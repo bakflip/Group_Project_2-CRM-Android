@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import Controller.IO;
 import Controller.SignIn;
 import Model.AllUsers;
 import Model.Customer;
@@ -20,7 +19,9 @@ import Model.Owner;
 import static Controller.IO.readFromFile;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int SECOND_ACTIVITY_REQUEST_CODE = 0;
+
+    private static final int SECOND_ACTIVITY_REQUEST_CODE = 2;
+    private static final int ZERO_ACTIVITY_REQUEST_CODE = 0;
     private Button butSignIn;
     private Button butSignUp;
     private AllUsers allUsers;
@@ -64,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     boolean isSignin = SignIn.Signin(sUserid,sPassword,allUsers);
                     if (isSignin == true){ // if isSignin is false, wrong password
                         // if sucessfully sing in, go to owner main menu
+                        //allUsers.ChangeOpass(sUserid,sPassword,"zaw");
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
-                        intent.putExtra("owner",owner);
+                        intent.putExtra("ownerID",owner.getID());
                         intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
@@ -97,16 +99,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SignUp.class);
                 intent.putExtra("AllUsers", allUsers);
-                startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
+                startActivityForResult(intent, ZERO_ACTIVITY_REQUEST_CODE);
             }
         });
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == ZERO_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
             }

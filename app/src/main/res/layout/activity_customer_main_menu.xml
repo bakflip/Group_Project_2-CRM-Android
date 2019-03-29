@@ -79,25 +79,31 @@
         <Button
             android:id="@+id/view_customer_button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Manage Appointment" />
 
         <Button
             android:id="@+id/send_message_button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Send Message" />
 
         <Button
             android:id="@+id/manage_credits"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Manage Credits" />
+
+        <Button
+            android:id="@+id/manage_customer_account"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Manage Account" />
 
         <Button
             android:id="@+id/sign_out_button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:text="Sign Out" />
 
     </LinearLayout>

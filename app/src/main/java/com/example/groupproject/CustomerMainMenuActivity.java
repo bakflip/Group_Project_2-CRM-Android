@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import Model.AllUsers;
 import Model.Customer;
-import Model.Owner;
 
 public class CustomerMainMenuActivity extends AppCompatActivity {
 
     AllUsers allUsers;
     Customer customer;
+    private int SECOND_ACTIVITY_REQUEST_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,5 +57,29 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button manAccount = findViewById(R.id.manage_account);
+        manAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerMainMenuActivity.this, ManageCustomerAccountActivity.class);
+                //send string id via intent so credit activity can get either customer or owner
+                //intent.putExtra("id",owner.getID());
+                intent.putExtra("alluser",allUsers);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+                customer = (Customer)data.getSerializableExtra("customer");
+            }
+        }
     }
 }

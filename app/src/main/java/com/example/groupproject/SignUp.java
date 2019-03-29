@@ -12,8 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.IOException;
-
-import Controller.IO;
 import Model.AllUsers;
 import Model.Customer;
 import Model.Owner;
@@ -122,5 +120,13 @@ public class SignUp extends AppCompatActivity {
             ret.setMsg(allUsers.customerExisted(_id, _name).getMsg());
         }
         return ret;
+    }
+
+    //Methods for JUnit Testing
+    public void allUsersInIt() {
+        allUsers = new AllUsers();
+    }
+    public AllUsers getAllUsers() {
+        return allUsers;
     }
 }

@@ -28,6 +28,8 @@ public class CreditActivity extends AppCompatActivity {
     Customer customer;
     Owner owner;
     double amount;
+    private int SECOND_ACTIVITY_REQUEST_CODE = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,27 +84,14 @@ public class CreditActivity extends AppCompatActivity {
                                                 TextView textView = (TextView) findViewById(R.id.credit_num);
                                                 textView.setText(Double.toString(owner.getCredit()));
 
-                                                textView = (TextView) findViewById(R.id.owner_credits);
-                                                textView.setText(Double.toString(owner.getCredit()));
-
                                             }
                                             else
                                             {
                                                 customer.addCredit(amount);
                                                 TextView textView = (TextView) findViewById(R.id.credit_num);
                                                 textView.setText(Double.toString(customer.getCredit()));
-
-                                                textView = (TextView) findViewById(R.id.customer_credits);
-                                                textView.setText(Double.toString(customer.getCredit()));
-
                                             }
 
-
-                                            try {
-                                                writeToFile(context,allUsers);
-                                            } catch (IOException e) {
-                                                e.getStackTrace();
-                                            }
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -150,8 +139,6 @@ public class CreditActivity extends AppCompatActivity {
                                             TextView textView = (TextView) findViewById(R.id.credit_num);
                                             textView.setText(Double.toString(owner.getCredit()));
 
-                                            textView = (TextView) findViewById(R.id.owner_credits);
-                                            textView.setText(Double.toString(owner.getCredit()));
                                         }
                                         else
                                         {
@@ -159,14 +146,8 @@ public class CreditActivity extends AppCompatActivity {
                                             TextView textView = (TextView) findViewById(R.id.credit_num);
                                             textView.setText(Double.toString(customer.getCredit()));
 
-                                            textView = (TextView) findViewById(R.id.customer_credits);
-                                            textView.setText(Double.toString(customer.getCredit()));
                                         }
-                                        try {
-                                            writeToFile(context,allUsers);
-                                        } catch (IOException e) {
-                                            e.getStackTrace();
-                                        }
+
                                     }
                                 })
                         .setNegativeButton("Cancel",
@@ -192,14 +173,20 @@ public class CreditActivity extends AppCompatActivity {
             }
         }); //end of send for owner
 
-        //cancel button
+        //return button
         Button butCancel = findViewById(R.id.return_but);
         butCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Send data back
-                intent.putExtra("AllUsers", allUsers);
-                setResult(RESULT_OK, intent);
+                Intent intent1 = new Intent(CreditActivity.this,OwnerMainMenuActivity.class);
+                intent1.putExtra("AllUsers", allUsers);
+                if(owner != null)
+                    intent1.putExtra("owner", owner);
+                else
+                    intent1.putExtra("customer",customer);
+                setResult(RESULT_OK, intent1);
+                startActivityForResult(intent1,SECOND_ACTIVITY_REQUEST_CODE);
                 finish();
             }
         });
