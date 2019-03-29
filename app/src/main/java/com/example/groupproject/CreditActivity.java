@@ -21,6 +21,7 @@ import Model.Customer;
 import Model.Owner;
 
 import static Controller.IO.writeToFile;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class CreditActivity extends AppCompatActivity {
     AllUsers allUsers;
@@ -202,5 +203,7 @@ public class CreditActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 }
